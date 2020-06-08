@@ -23,6 +23,7 @@ class WebController extends Controller
 
     public function book_now(){
         $user = Auth::User();
-        return view('book', compact('user'));
+        $artists = User::where('id','<>' ,$user->id)->where('role' , 'Admin')->get();
+        return view('book', compact('user' , 'artists'));
     }
 }
